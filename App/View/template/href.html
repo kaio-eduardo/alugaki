@@ -1,0 +1,32 @@
+<div class="amber darken-4">
+	<div class="container">
+		{% if get.pag %}
+			{% if get.pag != 'home' %}
+				<a href="?" class="breadcrumb">Home</a>
+			{% endif %}
+		<a href="?pag={{ get.pag }}" class="breadcrumb">{{ get.pag|capitalize }}</a>
+
+		{% if get.metodo %}
+			{% if get.metodo != 'produto' %}
+				<a href="?pag={{ get.pag }}&metodo={{ get.metodo }}" class="breadcrumb">{{ get.metodo|capitalize }}</a>
+			{% endif %}
+		{% else %}
+		<a href="?pag={{ get.pag }}&metodo=index" class="breadcrumb">Index</a>
+		{% endif %}
+
+		{% if get.id and get.metodo == 'produto' %}
+		<a href="?pag={{ get.pag }}&metodo={{ get.metodo }}&id={{ get.id }}"
+			class="breadcrumb">{{ produtos.nome|capitalize }}</a>
+		{% endif %}
+
+		{% if get.id and get.metodo != 'produto' %}
+		<a href="?pag={{ get.pag }}&metodo={{ get.metodo }}&id={{ get.id }}"
+			class="breadcrumb">{{ get.id|capitalize }}</a>
+		{% endif %}
+
+		{% else %}
+		<a href="?pag=home" class="breadcrumb">Home</a>
+		<a href="?pag=home" class="breadcrumb">Index</a>
+		{% endif %}
+	</div>
+</div>

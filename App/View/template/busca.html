@@ -1,0 +1,28 @@
+<center class="" id="loader">
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-orange-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</center>
+
+<div class="row" id="catalogo" style="display: none;">
+
+    {% include "template/produtos.html" %}
+
+    {% if search and produtos|length != 0 %}
+    <div class="col s12 row">
+        <a href="?pag=produtos"><button class="col s12 btn btn-large waves-effect waves-orange">
+            Ver catalogo completo
+        </button></a>
+    </div>
+    {% endif %}
+</div>

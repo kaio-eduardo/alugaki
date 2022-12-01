@@ -1,0 +1,111 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+
+{% set total = 0 %}
+
+{% for item in carrinho %}
+
+
+{% set total = total + item.price * item.qtd * item.time %}
+{% endfor %}
+
+<div class="container row" id="finalizar" style="margin-top: 0px;">
+    <div class="col s12">
+        <h2 class="flow-text">Falta pouco para finalizarmos seu pedido {{ user.username }} </h2>
+    </div>
+    <div class="col s12 m12 l6">
+        <div class="grey lighten-3 z-depth-2 row" style="height: 350px; padding: 10px 20px">
+            <div class="col s12">
+                <h4 class="flow-text orange-text"><strong> Processo de finalização de pedido </strong></h4>
+            </div>
+            <div class="col s12">
+                <ul class="collapsible">
+                    <li class="active">
+                        <div class="collapsible-header"><i class="fas fa-clipboard-list"></i>Resumo do pedido</div>
+                        <div class="collapsible-body">
+                            <span>{{ carrinho|length }} produto(s)</span>
+                            <!-- Modal Trigger -->
+                            <a class="waves-effect waves-light btn modal-trigger" href="#modal_produtos">Vizualizar
+                                pedido</a>
+                            <span><strong>Total: R$ {{ total + 8 }}</strong></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l6 padding-mobi">
+        <div class="grey lighten-3 z-depth-2" style="height: 350px; padding: 10px 20px">
+            <div class="row">
+                <div class="col s12">
+                    <h4 class="flow-text orange-text"><strong> Processos adicionais </strong></h4>
+                </div>
+                <div class="col s12">
+                    <ul class="collapsible">
+                        <li>
+                            <div class="collapsible-header"><i class="fas fa-gift"></i>Cupom ou vale</div>
+                            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12">
+        <div class="right">
+            <a href="?pag=carrinho" class="btn red darken-2 waves-effect waves-orange">Cancelar</a>
+            <a href="?pag=finalizar&metodo=confirmar" class="btn green darken-2">Confirmar</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal_produtos" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h3 class="header orange-text">Produtos do pedido</h3>
+        <ul class="collection">
+            {% for item in carrinho %}
+            <li class="collection-item avatar">
+                <img src="Public/imgs/Produtos/{{ item.image }}" alt="" height="250" class="circle complete">
+                <span class="title"><strong>{{ item.name|title }}</strong></span>
+                <p>Quantidade: {{ item.qtd }} item(s) | Periodo(mes): {{ item.time }} mês(es)
+                    <br> Preço(un/mês): R$ {{ item.price }} | Preço à pagar: R$
+                    {{ item.price * item.qtd * item.time }}
+                </p>
+            </li>
+            {% endfor %}
+            <li class="collection-item row">
+                <div class="col s12 m8 l4">
+                    <h4 class="title left"><strong>Total:</strong></h4>
+                    <h4 class="right">
+                        R$: {{ total + 8 }}
+                    </h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+        $('.modal').modal();
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,47 @@
+<div class="center-align white z-depth-2 my_orders row">
+    <div class="conteudo-header col s12">
+        <h3>Meus Pedidos</h3>
+
+        <p><strong><b>Todos os seus pedidos em um unico lugar</b></strong></p>
+
+        <p>
+            Qualquer questão que tiver sobre está pagina, entre em <a href="?pag=contato">Contato conosco</a>.
+        </p>
+    </div>
+
+    <hr class="col s12">
+
+    <div class="conteudo-corpo col s12">
+        <table class="responsive-table">
+            <thead>
+                <!--  thead Begin  -->
+
+                <tr>
+                    <!--  tr Begin  -->
+
+                    <th> Codigo: </th>
+                    <th> Valor: </th>
+                    <th> Método: </th>
+                    <th> Data do pedido:</th>
+                    <th> Deletar </th>
+                    <th> Conferir: </th>
+
+                </tr><!--  tr Finish  -->
+
+            </thead><!--  thead Finish  -->
+            <tbody>
+                {% for item in pedidos %}
+                <tr>
+                    <td>{{ item.codigo_ped }}</td>
+                    <td>{{ item.valor }}</td>
+                    <td>{{ item.mpagamento == 0 ? 'Mercado Pago' : 'Outro' }}</td>
+                    <td>{{ item.cdata }}</td>
+                    <td><a href="?pag=minhaconta&metodo=deletarPedido&id={{ item.codigo_ped }}"><i class="fas fa-trash red-text"></i></a></td>
+                    <td><a href="?pag=minhaconta&metodo=viewPedProd&id={{ item.codigo_ped }}"><i
+                                class="fas fa-info-circle teal-text"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

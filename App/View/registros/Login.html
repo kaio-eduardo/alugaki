@@ -1,0 +1,133 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+<div class="froms">
+	<form action="?pag=home&metodo=logar" method="post" class="center-a" id="form_login">
+		<h3 class="center white-text title-1">
+			<i class="material-icons">cloud</i> AluGaki <i class="material-icons">cloud</i></h3>
+		<div class="white inside z-depth-2">
+			<div class="white">
+				<div class="center">
+					<h4>Login</h4>
+				</div>
+				<div class="input-field orange-text">
+					<i class="material-icons prefix">account_box</i>
+					<input id="username-input" type="text" name="username" class="orange-text" value="{{ dados.username }}" required>
+					<label for="username-input">Username</label>
+				</div>
+
+				<div class="input-field orange-text">
+					<i class="material-icons prefix">vpn_key</i>
+					<input id="password-input" type="password" name="password" class="orange-text" value="{{ dados.password }}" required>
+					<label for="password-input">Password</label>
+				</div>
+
+				<div class="right">
+					<a href="?pag=minhaconta&metodo=recsenha">Forgot Password?</a>
+				</div>
+
+				<div class="switch">
+					<label>
+						<input type="checkbox" name="keep" checked />
+						<span class="lever"></span>
+						Keep me logged in
+					</label>
+				</div>
+
+				<div class="input-field orange-text">
+					<button id="submit" type="submit" name="enviar" class="btn orange waves-effect waves-green"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<a href="?pag=home&metodo=registro" class="col s5 offset-s8">Registrar-se</a>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block style %}
+<style>
+	.froms {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: auto;
+		width: 85%;
+	}
+
+	.center-a {
+		width: 50%;
+		margin: 20px 0;
+	}
+
+	.inside {
+		padding: 40px;
+	}
+
+	#submit {
+		width: 100%;
+	}
+
+	.title-1 {
+		padding-bottom: 10px;
+		border-bottom: solid 2px orange;
+	}
+
+	h4 {
+		margin-top: 0;
+	}
+
+	@media(max-width: 900px) {
+		.center-a {
+			width: 85%;
+			margin: 0;
+			padding: 0;
+		}
+
+		.froms {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 50px;
+			width: 100%;
+		}
+
+		.inside {
+			padding: 10px;
+		}
+	}
+
+	body {
+		background-image: linear-gradient(to bottom right, #1565c0 60%, #ff6f00);
+		background-repeat: no-repeat;
+	}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script src="Public/static/jquery_validation/dist/jquery.validate.min.js"></script>
+<script src="Public/static/jquery_validation/dist/additional-methods.min.js"></script>
+<script src="Public/js/ValidarLogin.js"></script>
+<script src="Public/js/message_validar.js"></script>
+<script>
+	$(document).ready(function () {
+		$('.sidenav').sidenav();
+		$('.dropdown-trigger').dropdown();
+		$('.tooltipped').tooltip();
+	});
+</script>
+{% endblock %}

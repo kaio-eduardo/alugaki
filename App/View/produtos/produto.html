@@ -1,0 +1,168 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+
+<div class="container" id="produto">
+    <div class="row">
+        <div class="col s12 m6 l5">
+            {% include "template/pcarousel.html" %}
+        </div>
+        <div class="col s12 m6 l7 white z-depth-3 detalhe-produto" style="padding: 20px;">
+            <div>
+                <div class="product-header">
+                    <h2>{{ produtos.nome|title }}</h2>
+                </div>
+                <div class="conteudo-produto row">
+                    <div class="col s12 m12">
+                        <div class="right nota-produto">
+                            <span class="stock"><strong>{{ produtos.estoque }} item(s)</strong> ({{ comentarios|length }} avaliações)</span>
+                            <span class="review orange-text"> {{ produtos.media == '' ? '0' : produtos.media }}/5<i class="fas fa-star"></i></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <p class="grey-text price-o oferta">De R$ {{ produtos.valor + 50 }} por:</p>
+                            <h4>R$ <strong id="preco">{{ produtos.valor }}</strong></h4>
+                            <p class="grey-text price-o">em até <b class="green-text">12x de R$
+                                    {{ (produtos.valor / 12)|round() }} sem juros</b></p><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-contant">
+                    <div>
+                        {{ produtos.descricao_curta|raw }}
+                    </div>
+                    <form action="?pag=carrinho&metodo=adicionar&id={{ produtos.codigo }}" id="form_info" method="POST">
+                        <div class="row">
+                            <div class="input-field col s8 m8 l2">
+                                <label for="quant_input">Quantidade</label>
+                                <input id="quant_input" name="quant" class="" size="1" type="number" value="1" min="1"
+                                    max="{{ produtos.estoque }}">
+                            </div>
+                            <div class="input-field col s8 m8 l2">
+                                <label for="time_input">Período</label>
+                                <input id="time_input" name="time" size="1" type="number" value="1" max="5">
+                            </div>
+                        </div>
+                        <button type="submit" class="orange btn btn-small waves-effect waves-green">Alugar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding: 0; margin-top: 45px" class="z-depth-3">
+        <ul class="tabs">
+            <li class="tab col s3"><a class="actives orange-text" href="#descricao">Descrição</a></li>
+            <li class="tab col s3"><a class="orange-text" href="#reviews">Reviews</a></li>
+        </ul>
+    </div>
+
+    <div class="row" style="margin: 20px 0; min-height: 500px;">
+        <div>
+            <!-- Tab panes -->
+            <div class="tab-contents white z-depth-3" style="padding: 20px;">
+                <div id="descricao" class="tab-pane active">
+                    <div class="product_desc">
+                        {{ produtos.descricao|raw }}
+                    </div>
+                </div>
+                <div id="reviews">
+                    <div class="product_review">
+                        <h3 style="margin-top: 0;"><strong>Reviews ({{ comentarios|length }})</strong></h3>
+                        {% if comentarios %}
+                        <ul class="collection">
+                            {% for item in comentarios %}
+                            <li class="collection-item avatar">
+                                <img src="Public/imgs/usuarios/{{ item.perfil }}" alt="Foto de {{ item.username }}"
+                                    class="complete responsive-img circle">
+                                <div>
+                                    <span class="title"><strong><b>{{ item.username }}</b></strong></span>
+                                    <a href="#!" class="orange-text right"><strong><b>{{ item.grade }} / 5</b></strong><i
+                                        class="material-icons right">grade</i></a>
+                                </div>
+                                <p>
+                                    {{ item.comentario }}
+                                </p>                                
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <div style="margin-bottom: 20px">
+                            <h4>Esse produto não possui nenhum comentário!</h4>
+                            <h6>Seja o primeiro!</h6>
+                        </div>
+                        {% endif %}
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="full">
+                                    <div id="cometario" class="full collapse commant_box">
+                                        <div class="row">
+                                            <h3>Escreva seu comentário:</h3>
+                                            <form class="col s12"
+                                                action="?pag=minhaconta&metodo=comentar&id={{ produtos.codigo }}"
+                                                method="POST" id="form_coment">
+                                                <div class="row">
+                                                    <div class="input-field col s12 m6">
+                                                        <i class="fas fa-comments orange-text prefix"></i>
+                                                        <textarea id="comentario_input" rows="5"
+                                                            class="materialize-textarea" name="comentario"></textarea>
+                                                        <label for="comentario_input">Adicione seu review
+                                                            aqui</label>
+                                                    </div>
+                                                    <div class="input-field col s6 m4 l2">
+                                                        <i class="fas fa-star orange-text prefix"></i>
+                                                        <input type="number" name="grade" value="1" min="1" max="5"
+                                                            id="nota_input">
+                                                        <label for="nota_input">Nota</label>
+                                                        <span class="helper-text" data-error="wrong"
+                                                            data-success="right">De 1 à 5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <button class="btn btn-small orange darken-2 right"
+                                                        type="submit">Comentar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script src="Public/static/jquery_validation/dist/jquery.validate.min.js"></script>
+<script src="Public/static/jquery_validation/dist/additional-methods.min.js"></script>
+<script src="Public/js/comentario_validar.js"></script>
+<script src="Public/js/message_validar.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            fullWidth: true,
+            indicators: true
+        });
+        $('.collapsible').collapsible();
+        $('.tabs').tabs();
+
+    });
+</script>
+{% endblock %}

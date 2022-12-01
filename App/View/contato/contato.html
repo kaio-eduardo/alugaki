@@ -1,0 +1,73 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+<div class="cyan darken-2 center" style="background: #363636; color:#fff;"><br><br><br>
+    <h1><b>Alguma dúvida? Entre em contato</b></h1><br><br><br>
+</div>
+<div class="container" id="contato" style="margin-top: 40px;">
+    <div class="row">
+        <form action="?pag=contato&metodo=enviarMessage" method="POST" class="white z-depth-3 col s12 m12 l8" style="padding: 30px 20px;">
+            <div class="row">
+                <div class="col s12">
+                    <h3 style="margin: 0;">Contate-nos</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m6 s12">
+                    <div class="input-field orange-text">
+                        <i class="fa fa-user prefix"></i>
+                        <input id="input_name" type="text" name="nome">
+                        <label for="input_name">Nome</label>
+                    </div>
+                </div>
+                <div class="col m6 s12">
+                    <div class="input-field orange-text">
+                        <i class="fa fa-envelope prefix"></i>
+                        <input id="input_email" type="email" name="email">
+                        <label for="input_email">Email</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 orange-text">
+                    <i class="fa fa-tag prefix"></i>
+                    <input id="input_username" type="text" name="Assunto">
+                    <label for="input_username">Assunto</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 orange-text">
+                    <i class="fa fa-comment prefix"></i>
+                    <textarea id="textarea-message" class="materialize-textarea" name="message"></textarea>
+                    <label for="textarea-message">Mensagem</label>
+                </div>
+            </div>
+            <button class="waves-effect btn orange darken-2">Enviar Mensagem</button>
+        </form>
+        <div class="row center l4" id='info_contato'>
+            <div class="col s12 m6 l4 center" style="margin-bottom: 20px;">
+                <div>
+                    <i class="far fa-envelope" style="font-size: 3em;"></i>
+                    <h5><b>EMAIL</b></h5>
+                    <h5><strong>alugaki@gmail.com</strong></h5>
+                </div>
+            </div>
+
+            <div class="col s12 m6 l4 center">
+                <i class="fas fa-phone" style="font-size: 3em;"></i>
+                <h5><b>SAC</b></h5>
+                <h5>0800 073 0073</h5>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}

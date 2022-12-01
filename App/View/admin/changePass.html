@@ -1,0 +1,63 @@
+<div id="change_password">
+    <div class="row">
+        <div class="col s12">
+            <h3 class="page-header"> Alterar senha</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col s12">
+            <div class="row grey lighten-3 title" style="padding: 10px 5px;">
+            </div>
+            <div class="row">
+                <form action="?pag=admin&metodo=trocarsenha" method="POST">
+                    <div class="row">
+                        <div class="col s12 m6 l8">
+                            <div class="card-panel stats-card orange darken-2 lighten-1 lighten-1 blue-text text-lighten-5"
+                                style="margin-bottom: 0;">
+                                <i class="fas fa-key"></i>
+                                <span class="count">Senha</span>
+                            </div>
+                            <div style="border: 1px solid; padding: 10px">
+                                <div class="row">
+                                    <div class="col s12 m6 l6 input-field">
+                                        <i class="fas fa-key prefix"></i>
+                                        <input type="password" name="senha" id="password">
+                                        <label for="password">Senha atual</label>
+                                    </div>
+                                    <div class="col s12 m6 l6 input-field">
+                                        <i class="fas fa-unlock-alt prefix"></i>
+                                        <input type="password" name="csenha" id="cpassword">
+                                        <label for="cpassword">Confirmar senha</label>
+                                    </div>
+                                    <div class="col s12">                                        
+                                        <button type="reset" class="btn btn-small right orange darken-2 waves-effect waves-red">Limpar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <div class="card-panel stats-card orange lighten-1 lighten-1 blue-text text-lighten-5"
+                                style="margin-bottom: 0;">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span class="count">Nova Senha</span>
+                            </div>
+                            <div style="border: 1px solid; padding: 10px">
+                                <div class="row">
+                                    <div class="col s12 input-field">
+                                        <i class="fas fa-exchange-alt prefix"></i>
+                                        <input type="password" name="newsenha" id="newpassword">
+                                        <label for="newpassword">Nova senha</label>
+                                    </div>
+                                    <div class="col s12">                                        
+                                        <button type="submit" class="btn btn-small right orange darken-2 waves-effect waves-green">Atualizar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

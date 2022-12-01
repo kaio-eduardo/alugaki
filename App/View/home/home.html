@@ -1,0 +1,35 @@
+{% extends "template/estrutura.html" %}
+
+{% block title %}
+Home - AlugAki
+{% endblock %}
+
+
+{% block top %}
+	{% include "template/navbar.html" %}
+	{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+	{% include "template/carousel.html" %}
+	{% include "template/prodeta.html" %}
+{% endblock %}
+
+{% block footer %}
+	{% include "template/footer.html" %}
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+
+	$(document).ready(function () {
+		$('.carousel.carousel-slider.primeiro').carousel({ fullWidth: true, indicators: true, noWrap: false });
+		$('.materialboxed').materialbox();
+	});
+
+</script>
+{% endblock %}
+
+{% block style %}
+{% endblock %}

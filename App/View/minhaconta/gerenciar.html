@@ -1,0 +1,73 @@
+<div class="center-align white z-depth-2 my_orders row">
+    <div class="conteudo-header col s12">
+        <h3>Meus Produtos</h3>
+
+        <p><strong><b>Todos os seus produtros cadastrados em um unico lugar</b></strong></p>
+
+        <p>
+            Qualquer questão que tiver sobre está pagina, entre em <a href="?pag=contato">Contato conosco</a>.
+        </p>
+    </div>
+
+    <hr class="col s12">
+
+    <div class="conteudo-corpo col s12">
+        <table class="responsive-table">
+            <thead>
+                <!--  thead Begin  -->
+
+                <tr>
+                    <!--  tr Begin  -->
+
+                    <td>Produto</td>
+                    <td>Nome</td>
+                    <td>Preço(un/mes)</td>
+                    <td>Estoque Total</td>
+                    <td>Qtd Disponível</td>
+                    <td>Qtd em Locação</td>
+                    <td>Data de modificação</td>
+                    <td>Data de criação</td>
+                    <td>Editar/Excluir</td>
+
+                </tr><!--  tr Finish  -->
+
+            </thead><!--  thead Finish  -->
+            <tbody>
+                {% for produtos in produtos %}
+                <tr>
+                    <td>
+                        <img src="Public/imgs/Produtos/{{ produtos.img_1 }}" width="50" class="materialboxed scale">
+                    </td>
+                    <td>
+                        <a href="?pag=minhaconta&metodo=vender&id={{ produtos.codigo }}"
+                            class="blue-text"><strong>{{ produtos.nome|title }}</strong></a>
+                    </td>
+                    <td>
+                        {{ produtos.valor }}
+                    </td>
+                    <td>
+                        {{ produtos.estoque + estoque[loop.index0].qtd }}
+                    </td>
+                    <td>
+                        <b>{{ produtos.estoque }}</b>
+                    </td>
+                    <td>
+                        <b>{{ estoque[loop.index0].qtd }}</b>
+                    </td>
+                    <td>
+                        <b>{{ produtos.dataupdate }}</b>
+                    </td>
+                    <td>
+                        {{ produtos.dataCriacao }}
+                    </td>
+                    <td>
+                        <a href="?pag=minhaconta&metodo=vender&id={{ produtos.codigo }}" class="green-text darken-1"><i
+                                class="fas fa-edit"></i></a> | 
+                        <a href="?pag=minhaconta&metodo=excluir"><i class=" red-text fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

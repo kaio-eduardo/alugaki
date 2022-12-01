@@ -1,0 +1,195 @@
+{% extends "template/estrutura.html" %}
+
+{% block conteudo %}
+
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+
+<div class="froms">
+	<form action="?pag=home&metodo=registrar" method="post" class="center-a" id="form_cadastro" style="margin: 20px 0;">
+		<h3 class="center white-text title-1 hide-on-small-only">
+			<i class="material-icons">cloud</i> AluGaki <i class="material-icons">cloud</i>
+		</h3>
+		<div class="white inside">
+			<div>
+				<div class="center">
+					<h4 class="black-text"><strong>CADASTRAR-SE</strong></h4>
+				</div>
+				<div class="row">
+					<div class="col m6 s12 grupo_input">
+						<div class="input-field orange-text">
+							<i class="material-icons prefix">account_box</i>
+							<input id="input_fname" type="text" name="firstname" required value="{{ dados.firstname }}">
+							<label for="input_fname">First Name</label>
+						</div>
+					</div>
+					<div class="col m6 s12 grupo_input">
+						<div class="input-field orange-text">
+							<i class="material-icons prefix">account_box</i>
+							<input id="input_lname" type="text" name="lastname" required value="{{ dados.lastname }}">
+							<label for="input_lname">Last Name</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field orange-text col s12">
+						<i class="material-icons prefix">email</i>
+						<input id="input_email" type="email" name="email" data-length="120" required
+							value="{{ dados.email }}">
+						<label for="input_email">Email</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field orange-text col s12">
+						<i class="material-icons prefix">face</i>
+						<input id="input_username" type="text" name="username" required value="{{ dados.username }}">
+						<label for="input_username">Username</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col m6 s12 grupo_input">
+						<div class="input-field orange-text">
+							<i class="material-icons prefix">lock</i>
+							<input type="password" name="password" id="input_password" required value="">
+							<label for="input_password">Senha</label>
+						</div>
+					</div>
+					<div class="col m6 s12 grupo_input">
+						<div class="input-field orange-text">
+							<i class="material-icons prefix">lock_outline</i>
+							<input type="password" name="cpassword" id="input_cpassword" required value="">
+							<label for="input_cpassword">Confirmar Senha</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12 m6 input-field orange-text grupo_input">
+						<i class="material-icons prefix">perm_contact_calendar</i>
+						<input id="nasc_date" type="text" name="dnasc" class="datepicker" required
+							value="{{ dados.dnasc }}">
+						<label for="nasc_date">Data de nascimento</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<label>
+							<input id="check_termos" type="checkbox" name="check_termos" class="filled-in orange-text"
+								checked="checked" />
+							<span>Concordar com <a href="?pag=termo">termos e condições</a> do AlugAki</span>
+						</label>
+						
+					</div>
+				</div>
+
+				<div class="right-align" style="margin: 10px 0px;">
+					<button type="submit" class="btn btn-large orange" style="margin-bottom: 0px">Cadastrar-se</button>
+				</div>
+			</div>
+		</div>
+	</form>
+	<span id="msg"></span>
+</div>
+
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block style %}
+<style>
+	.froms {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: auto;
+		width: 85%;
+	}
+
+	.center-a {
+		width: 50%;
+		margin: 20px;
+	}
+
+	.inside {
+		padding: 40px;
+	}
+
+	.title-1 {
+		padding-bottom: 10px;
+		border-bottom: solid 2px orange;
+	}
+
+	h4 {
+		margin-top: 0;
+	}
+
+	body {
+		background-image: linear-gradient(to bottom right, #1565c0 60%, #ff6f00);
+		background-repeat: no-repeat;
+	}
+
+	.grupo_input {
+		padding-left: 0;
+	}
+
+	@media(max-width: 1500px) {
+		.center-a {
+			width: 85%;
+			margin: 0;
+			padding: 0;
+		}
+
+		.froms {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0;
+			width: 100%;
+		}
+
+		.inside {
+			padding: 10px;
+		}
+	}
+
+	@media(max-width: 540px) {
+		.froms {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0;
+			width: 100%;
+		}
+	}
+
+	@media(max-width: 320px) {
+		.froms {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0;
+			width: 100%;
+		}
+	}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script src="Public/static/jquery_validation/dist/jquery.validate.min.js"></script>
+<script src="Public/static/jquery_validation/dist/additional-methods.min.js"></script>
+<script src="Public/js/ValidarRegistro.js"></script>
+<script src="Public/js/message_validar.js"></script>
+<script src="Public/js/getdate.js"></script>
+
+<script>
+
+	$(document).ready(function () {
+		$('.sidenav').sidenav();
+		$('.dropdown-trigger').dropdown();
+		$('.tooltipped').tooltip();
+		$('input#input_email').characterCounter();
+	})
+</script>
+{% endblock %}

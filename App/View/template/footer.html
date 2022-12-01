@@ -1,0 +1,76 @@
+<footer class="page-footer amber darken-4">
+    <div class="container {{ get.metodo == 'login' or get.metodo == 'registro' or get.pag == 'sobre' or get.pag == 'favoritos' or get.pag == 'contato' ? 'hide' }}">
+        <div class="row">
+            <div class="col l6 s12 hide-on-small-only" style="margin-bottom: 20px;">
+                <h5 class="white-text">AlugAKi</h5>
+                <p class="grey-text text-lighten-4" style="text-align: justify; text-justify: inter-word;">
+                    Com o país vivenciando uma possível crise econômica, o valor do dólar crescendo elevadamente a cada
+                    dia, produtos como celulares, notebooks, câmeras profissionais se tornam cada vez mais inacessíveis,
+                    assim impossibilitando a compra dos consumidores e não permitindo um crescimento da economia, diante
+                    disso, buscamos resolver esse problema, a partir da plataforma AlugAki. A plataforma tem o intuito
+                    de mudar o pensamento dos indivíduos quanto a forma que utilizam seu dinheiro, dando-lhes liberdade
+                    financeira e permitindo a eles ter o que desejam comprar de forma mais inteligente e sustentável,
+                    possibilitando um gasto consideravelmente menor ao preço normal do produto.
+                </p>
+            </div>
+            <div class="col l5 offset-l1 s12 row">
+                <div class="divider hide-on-med-and-up"></div>
+                <div class="col s5 m5">
+                    <h5 class="white-text"><i class="material-icons left">link</i>Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="?">Home</a></li>
+                        <li><a class="grey-text text-lighten-3" href="?pag=produtos">Shop</a></li>
+                        <li>
+                            {% if user.id_u %}
+                            <a class="grey-text text-lighten-3" href="?pag=minhaconta">Minha Conta</a>
+                            {% else %}
+                            <a class="grey-text text-lighten-3" href="?pag=home&metodo=login">Entrar/Cadastrar</a>
+                            {% endif %}
+
+                        </li>
+                        <li><a class="grey-text text-lighten-3" href="?pag=sobre">Sobre nós</a></li>
+                        <li><a class="grey-text text-lighten-3" href="?pag=contato">Contato</a></li>
+                        <li><a class="grey-text text-lighten-3" href="?pag=termo">Termos e condições</a></li>
+                        <li><a class="grey-text text-lighten-3" href="?pag=home&metodo=admin">Admin Login</a></li>
+                    </ul>
+                </div>
+                <div class="col s7 m6 offset-m1">
+                    <h5 class="white-text"><i class="material-icons left">home</i>Nos encontre</h5>
+                    <ul>
+                        <li><strong>AlugAki inc.</strong></li>
+                        <li>n° 18.814.435/0001-35</li>
+                        <li>Rua Antônio Girão, Central Parque Sorocaba</li>
+                        <li>Sorocaba - SP</li>
+                        <li>18051-260</li>
+                        <li><strong class="tooltipped" data-position="left"
+                                data-tooltip="Email meramente ilustrativo">alugaki@gmail.com</strong></li>
+                        <li><strong>Mr. Kaio Eduardo</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="{{ get.metodo == 'login' or get.metodo == 'registro' ? 'hide' }}">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <p class="center-align">SIGA NOS</p>
+                </div>
+                <div class="col s12">
+                    <div class="center-align social-medias">
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-twitch"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright orange darken-4">
+        <div class="container">
+            © 2020 - {{"now"|date("Y")}} Copyright
+            <a class="grey-text text-lighten-4 right" href="#!">by <strong>Kaio Eduardo Malek Moreira</strong></a>
+        </div>
+    </div>
+</footer>

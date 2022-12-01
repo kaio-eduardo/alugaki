@@ -1,0 +1,39 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+    <h5 class="black-text"><b>Favoritos</b></h5><br>
+    <hr>
+    <div class="row">
+    {% include "template/produtosfav.html" %}
+    </div>
+    
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block style %}
+<style>
+    .fcards {
+        padding-right: 8px !important;
+        padding-left: 8px !important;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('.materialboxed').materialbox();
+    });    
+</script>
+{% endblock %}

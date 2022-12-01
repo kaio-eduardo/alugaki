@@ -1,0 +1,77 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+<div class="container row">
+    <div class="top">
+        {% if search %}
+        <h5> Resultado encontrados por: <i class="orange-text">{{ search }}</i></h5>
+        <p><i>O numero de resultados encontrados foi {{ produtos|length }}.</i></p>
+        {% else %}
+        <h5> Todos os Produtos: </i></h5>
+        <p><i>O numero de produtos encontrados foi {{ produtos|length }} produto(s).</i></p>
+        {% endif %}
+    </div>
+
+    <!-- div da esquerda -->
+    <div class="col s12 m12 l2" style="padding: 0;">
+        <ul class="collapsible">
+            <li class="active">
+                <div class="collapsible-header">Categorias</div>
+                <div class="collapsible-body">
+                    {% for item in categorias %}
+                        <a href="?pag=produtos&metodo=buscar&id={{ item.nome_c }}" class="black-text">{{ item.nome_c }}</a>
+                        <hr>    
+                    {% endfor %}                    
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Div da Direita -->
+    <div class="col s12 m12 l10">                     
+        {% include "template/busca.html" %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            setInterval(() => {
+                $('#catalogo').fadeIn('slow');
+                $('#loader').fadeOut('fast');
+            }, 1000);
+            $('.materialboxed').materialbox();
+            $('.collapsible').collapsible();
+        })
+    </script>
+{% endblock %}
+
+{% block style %}
+<style>
+    .fcards {
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    h5 {
+        border: 0;
+        margin-bottom: 0;
+        padding: 0;
+    }
+</style>
+{% endblock %}

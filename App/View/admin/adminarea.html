@@ -1,0 +1,288 @@
+{% extends "template/admintml.html" %}
+
+{% block out %}
+<ul id="slide-out" class="sidenav sidenav-fixed side-admin grey lighten-3 z-depth-3">
+    <li class="center no-padding">
+        <div class="indigo darken-2 white-text" style="height: 64px;">
+            <div class="row">
+            </div>
+        </div>
+    </li>
+
+    <ul class="collapsible">
+        <li id="dash_dashboard">
+            <a class="waves-effect collapsible-header" href="?pag=admin"> <i class="material-icons">dashboard</i>
+                Dashboard</a>
+        </li>
+    </ul>
+
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header"><i class="fas fa-tag"></i>Produtos<i
+                    class="material-icons right">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="?pag=admin&metodo=viewProduct">Ver Produtos</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header"><i class="material-icons">library_books</i>Categorias<i
+                    class="material-icons right">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="?pag=admin&metodo=insertCat">Inserir Categoria</a></li>
+                    <li><a href="?pag=admin&metodo=viewCat">Ver Categorias</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header"><i class="material-icons">person</i>Usuarios<i
+                    class="material-icons right">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="?pag=admin&metodo=viewUsers">Ver usuarios</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header"><i class="material-icons">view_list</i>Pedidos<i
+                    class="material-icons right">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="?pag=admin&metodo=viewOrder">Ver Pedidos</a></li>
+                    <li><a href="?pag=admin&metodo=viewOrder">Ver Aceitos</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header"><i class="material-icons">people</i>Perfil<i
+                    class="material-icons right">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="?pag=admin&metodo=viewProfile">Ver Perfil</a></li>
+                    <li><a href="?pag=admin&metodo=changePass">Trocar Senha</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header"><i class="fas fa-cogs"></i>Configurações<i
+                    class="material-icons right">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="?pag=admin&metodo=viewAbout">Editar/Ver Sobre</a></li>
+                    <li><a href="?pag=admin&metodo=viewTerms">Editar/Ver Termos</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header"><i class="fas fa-th"></i>Slides<i
+                    class="material-icons right">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="?pag=admin&metodo=viewSlides">Ver Slides</a></li>
+                    <li><a href="?pag=admin&metodo=addSlide">Inserir Slide</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="collapsible collapsible-accordion">
+        <li>
+            <a class="collapsible-header"><i class="fas fa-envelope"></i>Mensagens<i
+                    class="material-icons right">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+                <ul>
+                    <li><a href="?pag=admin&metodo=viewMessages">Ver Mensagens</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="collapsible">
+        <li id="dash_dashboard">
+            <a class="waves-effect collapsible-header" href="?pag=admin&metodo=sair"> <i class="fas fa-power-off"></i>
+                Log Out</a>
+        </li>
+    </ul>
+</ul>
+{% endblock %}
+
+{% block top %}
+<ul class="dropdown-content" id="user_dropdown">
+    <li><a class="indigo-text" href="?pag=admin&metodo=viewProfile">Profile</a></li>
+    <li><a class="indigo-text" href="?pag=admin&metodo=sair">Logout</a></li>
+</ul>
+
+<nav class="indigo" role="navigation">
+    <div class="nav-wrapper">
+        <a data-activates="slide-out" class="brand-logo button-collapse show-on-large" href="#!"><img
+                class="responsive-img" src="Public/imgs/logo.png" /></a>
+
+        <ul class="right hide-on-med-and-down">
+            <li>
+                <a class='dropdown-trigger' href='#!' data-target='user_dropdown'><i
+                        class=' material-icons left'>account_circle</i> {{ admin.username }} </a>
+            </li>
+        </ul>
+
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </div>
+</nav>
+{% endblock %}
+
+{% block conteudo %}
+<div id="admin_conteudo" class="pagina">
+    <div class="page">
+        {% if get.metodo %}
+        {% if get.metodo == 'viewProduct' %}
+        {% include "admin/viewProduct.html" %}
+        {% endif %}
+        {% if get.metodo == 'editProduct' %}
+        {% include "admin/editProduct.html" %}
+        {% endif %}
+        {% if get.metodo == 'viewCat' %}
+        {% include "admin/viewCat.html" %}
+        {% endif %}
+        {% if get.metodo == 'insertCat' %}
+        {% include "admin/insertCat.html" %}
+        {% endif %}
+        {% if get.metodo == 'editCat' %}
+        {% include "admin/editCat.html" %}
+        {% endif %}
+        {% if get.metodo == 'viewUsers' %}
+        {% include "admin/viewUser.html" %}
+        {% endif %}
+        {% if get.metodo == 'editUser' %}
+        {% include "admin/editUser.html" %}
+        {% endif %}
+        {% if get.metodo == 'viewOrder' %}
+        {% include "admin/viewOrders.html" %}
+        {% endif %}
+        {% if get.metodo == 'editOrder' %}
+        {% include "admin/" %}
+        {% endif %}
+        {% if get.metodo == 'viewProfile' %}
+        {% include "admin/Nothing.html" %}
+        {% endif %}
+        {% if get.metodo == 'changePass' %}
+        {% include "admin/changePass.html" %}
+        {% endif %}
+        {% if get.metodo == 'viewAbout' %}
+        {% include "admin/viewAbout.html" %}
+        {% endif %}
+        {% if get.metodo == 'viewTerms' %}
+        {% include "admin/viewTerms.html" %}
+        {% endif %}
+        {% if get.metodo == 'sair' %}
+        {% include "admin/sair.html" %}
+        {% endif %}
+        {% if get.metodo == 'viewPedProd' %}
+        {% include "admin/viewPedProd.html" %}
+        {% endif %}
+        {% if get.metodo == 'viewSlides' %}
+        {% include "admin/viewSlides.html" %}
+        {% endif %}
+        {% if get.metodo == 'addSlide' %}
+        {% include "admin/addSlide.html" %}
+        {% endif %}
+        {% if get.metodo == 'viewMessages' %}
+        {% include "admin/viewMessages.html" %}
+        {% endif %}
+        {% if get.metodo == 'viewMessage' %}
+        {% include "admin/viewMessage.html" %}
+        {% endif %}
+        {% else %}
+        {% include "admin/dashboard.html" %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block scripts_header %}
+<script src="Public/static/tinymce/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        selector: "textarea#textarea1",
+        mode: "textareas",
+        height: 300
+    });
+    tinyMCE.init({
+        selector: "textarea#textarea2",
+        mode: "textareas",
+        height: 600
+    });
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="Public/js/getdate.js"></script>
+{% if get.metodo == 'editUser' %}
+<script>
+    $(document).ready(function () {
+        function limpa_formulário_cep() {
+            // Limpa valores do formulário de cep.
+            $("#cidade_input").val("");
+            $("#estado_input").val("");
+        }
+
+        $("#CEP_input").blur(function () {
+
+            //Nova variável "cep" somente com dígitos.
+            var cep = $(this).val().replace(/\D/g, '');
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if (validacep.test(cep)) {
+
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    $("#cidade_input").val("");
+                    $("#estado_input").val("");
+
+                    //Consulta o webservice viacep.com.br/
+                    $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                        if (!("erro" in dados)) {
+                            //Atualiza os campos com os valores da consulta.
+                            $("#cidade_input").val(dados.localidade);
+                            $("#estado_input").val(dados.uf);
+                        } //end if.
+                        else {
+                            //CEP pesquisado não foi encontrado.
+                            limpa_formulário_cep();
+                        }
+                    });
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulário_cep();
+                }
+            } //end if.
+            else {
+                //cep sem valor, limpa formulário.
+                limpa_formulário_cep();
+            }
+        });
+    });
+</script>
+{% endif %}
+{% endblock %}

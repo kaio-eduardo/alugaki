@@ -1,0 +1,7 @@
+vendor
+materialize
+static
+Public/imgs/Produtos/*
+Public/imgs/usuarios/*.jpg
+Public/imgs/Slides/*
+!Public/imgs/Slides/noSlide.jpg

@@ -1,0 +1,193 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+
+<div class="container" id="produto">
+    <form action="?pag=minhaconta&metodo=alterar" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="codigo" value="{{ produtos.codigo }}">
+        <div class="row">
+            <div class="col s12 m6 l5">
+                {% include "template/pcarousel.html" %}
+            </div>
+            <div class="col s12 m6 l7 white z-depth-3 detalhe-produto" style="padding: 20px;">
+                <div>
+                    <div class="product-header">
+                        <div class="row">
+                            <div class="input-field col s12 m12 l6">
+                                <input value="{{ produtos.nome|title }}" id="nome_input" name="nome" type="text"
+                                    class="validate">
+                                <label for="nome_input">Nome do produto</label>
+                            </div>
+                            <div class="input-field col s12 m12 l6" style="margin-bottom: 0px;">
+                                <select name="categoria">
+                                    <option value="" disabled>Escolha uma opção</option>
+                                    {% for categorias in categorias %}
+                                    <option value="{{ categorias.id_c }}"
+                                        {{ categorias.id_c == produto.cat ? 'selected' }}>{{ categorias.nome_c }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                                <label>Selecione uma categoria</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="conteudo-produto row">
+                        <div class="col s12 m12">
+                            <div class="right nota-produto">
+                                <span class="stock"><strong>{{ produtos.estoque }} item(s)</strong>
+                                    ({{ comentarios|length }} avaliações)</span>
+                                <span class="review orange-text"> {{ produtos.media == '' ? '0' : produtos.media }}/5<i
+                                        class="fas fa-star"></i></span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <input value="{{ produtos.valor }}" id="valor_input" name="valor" type="number"
+                                        class="validate">
+                                    <label for="valor_input">Preço (un / mês)</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <input value="{{ produtos.estoque }}" name="estoque" id="valor_input" type="number"
+                                        class="validate" style="margin-bottom: 0;">
+                                    <label for="valor_input">Estoque (Disponível)</label>
+                                    <span class="helper-text"><b class="red-text">Atenção:</b> O estoque disponível é a
+                                        quantidade de produtos que não está em um pedido</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-contant">
+                        <div class="col s12" style="margin-bottom: 20px;">
+                            <label for="textarea1" class="black-text"><strong>Descrição curta do
+                                    produto:</strong></label>
+                            <textarea id="textarea1" class="materialize-textarea"
+                                name="desc_curta">{{ produtos.descricao_curta }}</textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-small orange darken-2 right">Atualizar Produto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 0; margin-top: 45px" class="z-depth-3">
+            <ul class="tabs">
+                <li class="tab col s3"><a class="actives orange-text" href="#descricao">Descrição e Imagens</a></li>
+                <li class="tab col s3"><a class="orange-text" href="#reviews">Reviews</a></li>
+            </ul>
+        </div>
+
+        <div class="row" style="margin: 20px 0; min-height: 500px;">
+            <div>
+                <!-- Tab panes -->
+                <div class="tab-contents white z-depth-3" style="padding: 20px;">
+                    <div id="descricao" class="tab-pane active row">
+                        <div style="margin-bottom: 20px">
+                            <label for="textarea1" class="black-text"><strong>Descrição do produto:</strong></label>
+                            <textarea id="textarea1" class="materialize-textarea"
+                                name="descricao">{{ produtos.descricao }}</textarea>
+                        </div>
+                        <hr>
+                        <div>
+                            <div class="file-field input-field col s12">
+                                <div class="btn orange darken-2">
+                                    <span>File</span>
+                                    <input type="file" name="arqprodutos[]" multiple>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path" name="produtos_img" type="text" style="margin-bottom: 0;">
+                                    <span class="helper-text"><b class="red-text">Atenção:</b> Se você ativar as
+                                        alterações sem colocar uma imagem no Files você continuara com as imagens já
+                                        cadastradas, mas caso coloque uma imagem as já cadastradas serão deletadas.</span>
+                                </div>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <h3>Suas imagens:</h3>
+                            </div>
+                            <div class="center-align row">
+                                {% if produtos.img_1 %}
+                                <input type="hidden" name="img1" value="{{ produtos.img_1 }}">
+                                <img src="Public/imgs/Produtos/{{ produtos.img_1 }}" class="responsive-img" alt="">
+                                {% endif %}
+                                {% if produtos.img_2 %}
+                                <input type="hidden" name="img2" value="{{ produtos.img_2 }}">
+                                <img src="Public/imgs/Produtos/{{ produtos.img_2 }}" class="responsive-img" alt="">
+                                {% endif %}
+                                {% if produtos.img_3 %}
+                                <input type="hidden" name="img3" value="{{ produtos.img_3 }}">
+                                <img src="Public/imgs/Produtos/{{ produtos.img_3 }}" class="responsive-img" alt="">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="reviews">
+                        <div class="product_review">
+                            <h3 style="margin-top: 0;"><strong>Reviews ({{ comentarios|length }})</strong></h3>
+                            {% if comentarios %}
+                            <ul class="collection">
+                                {% for item in comentarios %}
+                                <li class="collection-item avatar">
+                                    <img src="Public/imgs/usuarios/{{ item.perfil }}" alt="Foto de {{ item.username }}"
+                                        class="complete responsive-img circle">
+                                    <div>
+                                        <span class="title"><strong><b>{{ item.username }}</b></strong></span>
+                                        <a href="#!" class="orange-text right"><strong><b>{{ item.grade }} /
+                                                    5</b></strong><i class="material-icons right">grade</i></a>
+                                    </div>
+                                    <p>
+                                        {{ item.comentario }}
+                                    </p>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <div style="margin-bottom: 20px">
+                                <h4>Esse produto não possui nenhum comentário!</h4>
+                                <h6>Seja o primeiro!</h6>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block scripts_header %}
+<script src="Public/static/tinymce/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        mode: "textareas",
+        height : "500"
+    });
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            fullWidth: true,
+            indicators: true
+        });
+        $('select').formSelect();
+        $('.collapsible').collapsible();
+        $('.tabs').tabs();
+    });
+</script>
+{% endblock %}

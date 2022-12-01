@@ -1,0 +1,199 @@
+<div id="top">
+    <!-- Top Begin -->
+    <div class="container row" style="margin-bottom: 0;">
+        <!-- container Begin -->
+        <div class="col m6 l5 hide-on-small-only nome-v">
+            <!-- col-md-6 offer Begin -->
+            {% if user.id_u %}
+            <a href="#">Bem vindo! <i><b>{{user.username}}</b></i></a>
+            {% else %}
+            <a href="#">{{"Bem vindo! Visitante"}}</a>
+            {% endif %}
+        </div><!-- col-md-6 offer Finish -->
+        <div class="col s12 m6 l5 offset-l2">
+            <!-- col-md-6 Begin -->
+            <ul class="menu">
+                <!-- cmenu Begin -->
+                {% if user.id_u %}
+                <li>
+                    <a href="?pag=minhaconta">My Account</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="?pag=home&metodo=registro">Register</a>
+                </li>
+                <li>
+                    <a href="?pag=home&metodo=login">Login</a>
+                </li>
+                {% endif %}
+
+                <li>
+                    <a href="?pag=carrinho">Go To Cart</a>
+                </li>
+            </ul><!-- menu Finish -->
+        </div><!-- col-md-6 Finish -->
+    </div><!-- container Finish -->
+</div><!-- Top Finish -->
+
+<!-- Navbar -->
+<div>
+    <nav class="amber darken-3 z-depth-0">
+
+        <div class="nav-wrapper container amber darken-3" id="searchbox" style="display: none;">
+            <form action="?pag=produtos&metodo=buscar" method="get">
+                <input type="hidden" name="pag" value="produtos" readonly>
+                <input type="hidden" name="metodo" value="buscar" readonly>
+                <div class="input-field">
+                    <input id="search" type="search" name="id" required>
+                    <label class="label-icon" for="search">
+                        <i class="material-icons black-text">search</i>
+                    </label>
+                    <i class="material-icons black-text" id="close" onclick="showhide();">close</i>
+                </div>
+            </form>
+        </div>
+
+        <div class="nav-wrapper container" id="navbar">
+
+            <a href="?">
+                <img src="Public/imgs/logo.png" class="brand-logo logo-alugaki" alt="AlugAki">
+            </a>
+
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <ul class="right">
+
+                <li>
+                    <a href="#!" id="search" onclick="hideshow();" class="tooltipped" data-position="bottom"
+                        data-tooltip="Clique para pesquisar">
+                        <i class="material-icons">search</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="?pag=carrinho" class="hide-on-med-and-down" href="#!">
+                        <i class="material-icons">shopping_cart</i>
+                    </a>
+                </li>
+                {% if user.id_u %}
+                <li>
+                    <a href="?pag=minhaconta&metodo=gerenciar" class="hide-on-med-and-down">
+                        <i class="material-icons">attach_money</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="?pag=favoritos" class="hide-on-med-and-down">
+                        <i class="material-icons">favorite</i>
+                    </a>
+                </li>
+                {% endif %}
+
+                <li>
+                    {% if user.id_u %}
+                    <a href="#" class="hide-on-med-and-down dropdown-trigger" data-target='dropdown1'>
+                        <i class="material-icons left">account_circle</i>
+                        <i class="material-icons right">arrow_drop_down</i>
+                        {{ user.username }}</a>
+                    {% else %}
+                    <a href="?pag=home&metodo=login" class="hide-on-med-and-down">Entrar/Cadastrar</a>
+                    {% endif %}
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- Fim navbar -->
+
+<!-- Dropdown Navbar -->
+<ul id='dropdown1' class='dropdown-content hide-on-sma-and-down'>
+    <li>
+        <a href="#!" class="amber-text text-darken-4">
+            <i class="material-icons left">account_circle</i>{{ user.username }}
+        </a>
+    </li>
+    <li>
+        <a href="?pag=minhaconta">
+            <i class="material-icons left">settings</i>Config
+        </a>
+    </li>
+    <li>
+        <a href="?pag=minhaconta&metodo=sair" class="amber-text text-darken-4">
+            <i class="material-icons left">logout</i>Sair
+        </a>
+    </li>
+</ul>
+<!-- Fim Dropdown Navbar -->
+
+<!-- Sidebar -->
+<ul id="mobile-demo" class="sidenav">
+
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="Public/imgs/Slides/noSlide.jpg">
+            </div>
+            {% if user %}
+            <a href="#user"><img class="circle complete"
+                    src="Public/imgs/usuarios/{{ user.perfil ? user.perfil : 'No_image_available.svg' }}"></a>
+            <a href="#name"><span class="white-text name">{{ user.username }}</span></a>
+            <a href="#email"><span class="white-text email">{{ user.email }}</span></a>
+            {% endif %}
+        </div>
+    </li>
+    <li><a href="?"><i class="fas fa-home"></i>Home</a></li>
+    <li><a href="?pag=favoritos"><i class="fas fa-heart"></i>Favoritos</a></li>
+
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <li><a class="subheader">Meu carrinho</a></li>
+    <li><a class="waves-effect" href="?pag=carrinho"><i class="fas fa-shopping-cart"></i>Carrinho</a></li>
+
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <li><a class="subheader">Shop</a></li>
+    <li><a class="waves-effect" href="?pag=produtos"><i class="fas fa-stream"></i>Ver produtos</a></li>
+
+    <li>
+        <div class="divider"></div>
+    </li>
+    {% if user %}
+    <li><a class="subheader">Minha Conta</a></li>
+    <li><a class="waves-effect" href="?pag=minhaconta"><i class="fas fa-user-circle"></i>Index</a></li>
+    <li><a class="waves-effect" href="?pag=minhaconta&metodo=my_orders"><i class="fas fa-folder"></i>Meus pedidos</a>
+    </li>
+    <li><a class="waves-effect" href="?pag=minhaconta&metodo=editar"><i class="fas fa-cogs"></i>Editar conta</a></li>
+    <li><a class="waves-effect" href="?pag=minhaconta&metodo=novo_produto"><i class="fas fa-plus-square"></i>Adicionar
+            produto</a></li>
+    <li><a class="waves-effect" href="?pag=minhaconta&metodo=gerenciar"><i class="fas fa-cog"></i>Gerenciar produtos</a>
+    </li>
+    {% else %}
+    <li><a class="subheader">Conta</a></li>
+    <li><a class="waves-effect" href="?pag=home&metodo=login"><i class="fas fa-sign-in-alt"></i>Login</a></li>
+    <li><a class="waves-effect" href="?pag=home&metodo=registro"><i class="fas fa-plus-square"></i>Cadastro</a>
+    </li>
+    {% endif %}
+
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <li><a class="waves-effect" href="?pag=sobre"><i class="fas fa-info-circle"></i>Sobre nós</a></li>
+    <li><a class="waves-effect" href="?pag=contato"><i class="fas fa-phone-square"></i>Contato</a></li>
+    <li><a class="waves-effect" href="?pag=termo"><i class="fas fa-shield-alt"></i>Termos e condições</a></li>
+
+    <li>
+        <div class="divider"></div>
+    </li>
+    {% if user %}
+    <li><a class="waves-effect" href="?pag=minhaconta&metodo=sair"><i class="fas fa-times"></i>Sair</a></li>
+    {% endif %}
+
+
+</ul>
+<!-- Fim Sidebar -->

@@ -1,0 +1,81 @@
+{% set myVal = 0 %}
+{% for produtos in produtos %}
+
+{% set myVal = myVal + 10 %}
+{% set href = '?pag=produtos&metodo=produto&id=' ~ produtos.codigo %}
+
+<div class="col s12 m6 {{ (get.metodo == 'buscar' or get.metodo == '') and get.pag == 'produtos' ? 'l4' : 'l3' }} fcards">
+    <div class="card z-depth-3">
+        <div class="card-image">
+            <img class="materialboxed scale" data-caption="{{ produtos.nome }}" height="200"
+                src="Public/imgs/Produtos/{{ produtos.img_1 }}">
+            <a href="?pag=favoritos&metodo=adicionar&id={{ produtos.codigo }}"
+                class="btn-floating halfway-fab waves-effect waves-red amber darken-3">
+                <i class="material-icons">favorite</i>
+            </a>
+        </div>
+        <div class="card-content">
+            <div>                
+                <span class="badge">{{ produtos.nome_c }}</span>
+            </div>
+            <div>
+                <h6 class="grey-text price-o oferta">De R$ {{ produtos.valor + 800 }} por:</h6>
+                <h6 class="green-text price truncate"><strong>R$ {{ produtos.valor }} à vista.</strong></h6>
+                {% if (get.pag == 'home') or get.pag == '' %}                
+                <span class="badge orange-text "> {{ produtos.media == '' ? '0' : produtos.media }}/5<i
+                    class="fas fa-star"></i></span>
+                {% endif %}
+                <h6 class="orange-text price-o"><strong>12x de R$
+                        {{ (produtos.valor / 12)|round(2, 'floor') }} sem juros</strong></h6>
+                <span class="grey-text">{{ produtos.nome|title }}</span>
+            </div>
+            <p></p>
+        </div>
+        <div class="card-action">
+            <div class="row" style="margin-bottom: 0px;">
+                {% if produtos.dono_post != user.id_u %}
+                <a href="#" class="btn col s8 offset-s1 dropdown-trigger green darken-1 btn-comprar z-depth-0"
+                    data-target="dropdown{{ myVal }}">
+                    <strong>Alugar</strong></a>
+                {% else %}
+                <a href="{{ href }}" class="btn col s8 offset-s1 green darken-1 btn-comprar z-depth-0">
+                    <strong>Editar</strong></a>
+                {% endif %}
+                <button class="btn col s2 activator z-depth-0 teal darken-2 waves-effect waves-orange" style="margin-left: 2px;">
+                    <i class="material-icons center-align">info_outline</i>
+                </button>
+            </div>
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4 row"><strong class="col s10">{{ produtos.nome }}</strong><i
+                    class="material-icons col s2">close</i>
+            </span>
+            <hr>
+            <div>{{ produtos.descricao_curta|raw }}</div>
+            <p class="orange-text">by {{ produtos.username }}</p>
+        </div>
+    </div>
+</div>
+
+{% if produtos.dono_post != user.id_u %}
+<ul id='dropdown{{ myVal }}' class='dropdown-content hide-on-sma-and-down'>
+    <li>
+        <a href="{{ href }}" class="amber-text text-darken-4">
+            <i class="material-icons left">add_shopping_cart</i>Carrinho
+        </a>
+    </li>
+    <li>
+        <a href="{{ href }}">
+            <i class="material-icons left">money</i>Alugar
+        </a>
+    </li>
+</ul>
+{% endif %}
+
+{% else %}
+<div class="col s12">
+<h3 class="flow-text">
+    Não existe nenhum produto no momento
+</h3>
+</div>
+{% endfor %}

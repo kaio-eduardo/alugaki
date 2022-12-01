@@ -1,0 +1,108 @@
+<div class="center-align white z-depth-2 editar row">
+    <div class="conteudo-header col s12">
+        <h3>Editar conta</h3>
+    </div>
+    <hr class="col s12">
+    <div class="conteudo-corpo col s12">
+        <form action="?pag=minhaconta&metodo=atualizarcadastro" method="POST" id="form_atualizarR"
+            enctype="multipart/form-data">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="first_name_input" name="firstname" type="text" class=""
+                        value="{{ user.pnome }}">
+                    <label for="first_name_input">Primeiro nome</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="last_name_input" name="lastname" type="text" class=""
+                        value="{{ user.unome }}">
+                    <label for="last_name_input">Ultimo nome</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Placeholder" id="username_input" name="username" type="text" class=""
+                        value="{{ user.username }}">
+                    <label for="username_input">Username</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Placeholder" id="email_input" name="email" type="text" class=""
+                        value="{{ user.email }}">
+                    <label for="email_input">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Placeholder" id="password_input" name="password" type="password" class="">
+                    <label for="password_input">Senha</label>
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="Placeholder" id="cpassword_input" name="cpassword" type="password" class="">
+                    <label for="cpassword_input">Confirmar senha</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4 m3">
+                    <input id="CEP_input" name="cep" placeholder="Placeholder" type="text" class=""
+                        value="{{ user.CEP }}">
+                    <label for="CEP_input">CEP</label>
+                </div>
+                <div class="input-field col s2 m3">
+                    <input readonly placeholder="Placeholder" id="estado_input" name="estado" type="text" class=""
+                        value="{{ user.estado }}">
+                    <label for="estado_input">estado</label>
+                </div>
+                <div class="input-field col s6 m6">
+                    <input readonly placeholder="Placeholder" id="cidade_input" name="cidade" type="text" class=""
+                        value="{{ user.cidade }}">
+                    <label for="cidade_input">cidade</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="cpf_input" name="cpf" type="text" class=""
+                        value="{{ user.CPF }}">
+                    <label for="cpf_input">CPF</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="dnasc_input" name="dnasc" type="text" class="datepicker"
+                        value="{{ user.dnasc }}">
+                    <label for="dnasc_input">Data de nascimento</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Placeholder" id="tel_input" name="tel" type="text" class=""
+                        value="{{ user.telefone }}">
+                    <label for="tel_input">Tel</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s12">
+                    <div class="btn orange darken-2">
+                        <span>File</span>
+                        <input type="file" name="arqperfil" onchange="previewFile(this);" accept="image/*">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" name="perfil" type="text">
+                    </div>
+                </div>
+                <div class="col s12">
+                    <img src="Public/imgs/usuarios/{{ user.perfil }}" id="preview" width="300" height="300" class="left responsive-img"
+                        alt="Sua futura imagem de perfil" style="display: {{ user.perfil ? '' : 'none'}};">
+                </div>
+                {% if user.perfil %}
+                <div class="col s12">
+                    <p>Caso clique em atualizar conta sem selecionar uma nova imagem de perfil, a imagem atual será
+                        perdida, caso queira continuar com a mesma selecione-a novamente no seu computador</p>
+                </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn orange darken-2 waves-effect waves-green"><i
+                    class="material-icons left">update</i>Atualizar conta</button>
+            <button type="reset" class="btn red darken-2 waves-effect waves-orange"><i
+                    class="material-icons left">clear</i>Cancelar</button>
+        </form>
+    </div>
+</div>

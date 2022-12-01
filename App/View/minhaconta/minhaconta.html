@@ -1,0 +1,84 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+
+{% if user %}
+
+<div id="conteudo">
+    <div class="container row" style="margin-bottom: 0px;">
+
+        <div class="col s12 m12 l3 side">
+            {% include "minhaconta/sidebar.html" %}
+        </div>
+
+        <div class="col s12 m12 l9">
+            <div class="box">
+                {% if get.metodo == 'index' or get.metodo == '' %}
+                {% include "minhaconta/index.html" %}
+                {% endif %}
+                {% if get.metodo == 'my_orders' %}
+                {% include "minhaconta/my_orders.html" %}
+                {% endif %}
+                {% if get.metodo == 'editar' %}
+                {% include "minhaconta/editar.html" %}
+                {% endif %}
+                {% if get.metodo == 'novo_produto' %}
+                {% include "minhaconta/newproduct.html" %}
+                {% endif %}
+                {% if get.metodo == 'sair' %}
+                {% include "minhaconta/sair.html" %}
+                {% endif %}
+                {% if get.metodo == 'viewPedProd' %}
+                {% include "minhaconta/viewPedProd.html" %}
+                {% endif %}
+                {% if get.metodo == 'gerenciar' %}
+                {% include "minhaconta/gerenciar.html" %}
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block scripts_header %}
+<script src="Public/static/tinymce/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        mode: "textareas",
+    });
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="Public/static/jquery_validation/dist/jquery.validate.min.js"></script>
+<script src="Public/static/jquery_validation/dist/additional-methods.min.js"></script>
+<script src="Public/static/jquery_maskplugin/dist/jquery.mask.min.js"></script>
+{% if get.metodo == 'editar' %}
+<script src="Public/js/getdate.js"></script>
+<script src="Public/js/ValidarUpdateR.js"></script>
+{% else %}
+<script src="Public/js/ValidarProduto.js"></script>
+{% endif %}
+<script src="Public/js/message_validar.js"></script>
+<script>
+	$(document).ready(function () {
+		$('.sidenav').sidenav();
+		$('.dropdown-trigger').dropdown();
+        $('.tooltipped').tooltip();
+        $('select').formSelect();
+	});
+</script>
+{% endblock %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="Public/materialize/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+		integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<link rel="stylesheet" href="Public/css/main.css">
+
+	{% block style %}
+	{% endblock %}
+
+	{% block scripts_header %}{% endblock %}
+
+	<title>
+		{% block title %}Index
+		{% endblock %}
+	</title>
+
+</head>
+
+<body class="grey lighten-2">
+
+	{% block out %}{% endblock %}
+
+	<header>
+		{% block top %}{% endblock %}
+	</header>
+
+	<main>
+		{% include "template/floating.html" %}
+		{% block conteudo %}{% endblock %}
+	</main>
+
+
+	{% block footer %}{% endblock %}
+
+	<script src="Public/static/jquery.js"></script>
+	<script src="Public/materialize/js/materialize.min.js"></script>
+	{% if sucesso %}
+	{% set msg = sucesso %}
+	<script>
+		$(document).ready(function () {
+			var toastHTML = '<span>{{ msg }}</span><button class="btn-flat toast-action">Ok!</button>';
+			M.toast({ html: toastHTML });
+		});
+	</script>
+	{% endif %}
+
+	{% if error %}
+	{% set msg = error %}
+	<script>
+		$(document).ready(function () {
+			var toastHTML = '<span class="white-text"><strong>{{ error }}</strong></span>';
+			M.toast({ html: toastHTML });
+		});
+	</script>
+	{% endif %}
+	<script>
+		function hideshow() {
+			document.getElementById("searchbox").style.display = 'block';
+			document.getElementById("search").focus();
+			document.getElementById("navbar").style.display = 'none';
+		}
+
+		function showhide() {
+			document.getElementById("searchbox").style.display = 'none';
+			document.getElementById("search").blur();
+			document.getElementById("navbar").style.display = 'block';
+		}
+
+		$(document).ready(function () {
+			$('.tooltipped').tooltip();
+			$('.sidenav').sidenav();
+			$('.dropdown-trigger').dropdown();
+			$('.fixed-action-btn').floatingActionButton({
+				toolbarEnabled: true
+			});
+		});
+	</script>
+	{% block scripts %}{% endblock %}
+</body>
+
+</html>

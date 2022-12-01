@@ -1,0 +1,650 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+img.scale {
+    background-color: rgb(255, 255, 255);
+    object-fit: contain;
+}
+
+img.complete {
+    background-color: rgb(255, 255, 255);
+    object-fit: cover;
+}
+
+img.scale-car {
+    background-color: #e0e0e0;
+    object-fit: contain;
+}
+
+@media(max-width: 992px) {
+    img.scale-car {
+        background-color: rgb(255, 255, 255);
+        object-fit: cover;
+    }
+}
+
+.social-medias {
+    font-size: 25pt;
+}
+
+.row-cat {
+    margin-bottom: 0;
+}
+
+.produtos {
+    margin-top: 20px;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+.btn {
+    font-size: 20px;
+    border-radius: 0;
+    transition: all 0.5s;
+}
+
+.btn-comprar:hover {		
+    color: black;
+    background-color: #268806 !important;
+}
+
+.price,
+.price-o {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.price {
+    font-size: 20px;
+}
+
+.price-o {
+    font-size: 10pt;
+}
+
+.oferta{
+    font-size: 10pt;
+    text-decoration: line-through;
+}
+
+.fcards {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.card.small {
+    margin-bottom: 0;
+}
+
+.descricao {
+    padding: 20px 0px 20px 0px;
+}
+
+.breadcrumb::before {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .logo-alugaki {
+        height: 50px;
+    }
+}
+
+#promo_section .promo {
+    margin-bottom: 20px;
+}
+
+#promo_section .promo img {
+    height: 7rem;
+}
+
+#promo_section .promo .promo-caption {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+#card-index .stats-card {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+#card-index .stats-card .count {
+    position: relative;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+#card-index .stats-card .name {
+    position: relative;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+#card-index .stats-card>i {
+    position: absolute;
+    font-size: 6rem;
+    right: 0;
+    bottom: -1rem;
+}
+
+@media only screen and (max-width: 992px) {
+    #card-index .stats-card>i {
+        font-size: 4rem;
+        bottom: 1rem;
+    }
+    .container#contato .row#info_contato > .col {
+        margin-top: 40px;
+    }
+}
+
+/* Top Styles */
+
+#top{
+    background: #494949;
+    padding: 5px 0;
+}
+
+#top a{
+    color: #ffffff;
+}
+
+#top ul.menu {
+    text-align: right;
+    padding-top: 5px;
+    margin: 0px;
+    font-size: 12px;
+    list-style: none;
+}
+
+#top div.nome-v {
+    text-align: left;
+    padding-top: 0px;
+    margin: 0px;
+    font-size: 20px;
+    list-style: none;
+}
+
+@media(max-width: 600px){
+    #top .offer{
+        margin-bottom: 10px;
+        font-size: 12px;
+        text-align: center;
+    }
+    #top ul.menu{
+        text-align: center;
+        padding-top: 0;
+    }
+}
+
+#top ul.menu > li{
+    display: inline-block;
+}
+
+/**
+* @\00a0 = codigo para espaços
+*/
+#top ul.menu > li + li::before{
+    content: "|\00a0";
+    color: #f7f7f7;
+    padding: 0 5px;
+}
+
+/* Fim top */
+
+/* conteudo minhaconta */
+
+#conteudo {
+    margin: 45px 0;
+}
+
+@media(max-width: 992px) {
+    #conteudo div .side {
+        padding: 0;
+    }
+}
+
+/* Panel lateral*/
+#conteudo .panel.lateral {
+    box-sizing: border-box;
+}
+
+#conteudo .panel.lateral .panel-header  {
+    padding-bottom: 10px;
+}
+
+#conteudo .panel.lateral .panel-header .nome-user {
+    margin-top: 0;
+}
+
+#conteudo .panel.lateral .panel-header .img-user {
+    padding: 10px 15px;
+}
+
+#conteudo .panel.lateral .panel-corpo ul.menu-links {
+    padding: 15px;
+}
+
+#conteudo .panel.lateral .panel-corpo ul.menu-links li {
+    padding: 10px 15px;
+    margin-bottom: 5px;
+}
+
+#conteudo .panel.lateral .panel-corpo ul.menu-links li:hover {
+    background-color: #e0e0e0;
+}
+
+#conteudo .panel.lateral .panel-corpo ul.menu-links li.active {
+    background-color:  rgb(214, 116, 4);
+    padding: 10px 15px;
+    margin-bottom: 5px;
+}
+
+#conteudo .panel.lateral .panel-corpo ul.menu-links li a {    
+    color: rgb(214, 116, 4);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+#conteudo .panel.lateral .panel-corpo ul.menu-links li.active a {    
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+/* fim panel lateral*/
+
+/* panel my_orders */
+
+#conteudo .my_orders {
+    padding: 20px;
+}
+
+#conteudo .my_orders * {
+    margin: 0;
+}
+
+#conteudo .my_orders .conteudo-header * {
+    margin-bottom: 13px;
+}
+
+#conteudo .my_orders .conteudo-corpo {
+    padding: 0;
+}
+
+/* fim panel my_orders */
+
+/* panel sair */
+
+#conteudo .sair {
+    padding: 20px;
+}
+
+#conteudo .sair * {
+    margin: 0 0 13px 0;
+}
+
+/* fim panel sair */
+
+/* panel editar */
+
+#conteudo .editar {
+    padding: 20px;
+}
+
+/* fim panel editar */
+
+/* panel index */
+
+#conteudo .index {
+    padding: 20px;
+}
+
+#conteudo .stats-card {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+#conteudo .stats-card .count {
+    position: relative;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+#conteudo .stats-card .name {
+    position: relative;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+#conteudo .stats-card>i {
+    position: absolute;
+    font-size: 6rem;
+    right: 0;
+    bottom: -1rem;
+}
+
+@media only screen and (max-width: 992px) {
+    #conteudo .stats-card>i {
+        font-size: 4rem;
+        bottom: 1rem;
+    }
+}
+
+/* fim panel index */
+
+/* fim minhaconta */
+
+/* inicio produto */
+
+#produto .row {
+    padding: 0;
+    margin: 0;
+}
+
+#produto h4 {
+    margin: 0;
+}
+
+#produto #info {
+    padding: 10px;
+}
+
+#produto #info .top {
+    margin-bottom: 10px;
+}
+
+#produto #info .top .col {
+    padding: 0;
+}
+
+#produto {
+    margin-top: 45px;
+}
+
+#produto .product-header h2 {
+    margin: 10px 0;
+}
+
+#produto .stock {
+    margin-right: 10px;
+}
+
+#produto .conteudo-produto {
+    border-top: 3px solid grey;
+    border-bottom: 3px solid grey;
+    margin: 10px 0;
+}
+
+#produto nota-produto {
+    font-size: 12px;
+}
+
+#produto .precos {
+    margin: 10px 0 15px 0;
+}
+
+#produto .precos h6 {
+    font-size: 15px;
+    margin: 0;
+}
+
+#produto .detail-contant {
+    margin-top: 10px;
+}
+
+#produto li.indicator {
+    background-color: orange !important;
+}
+
+#produto textarea#comentario_input.materialize-textarea {
+    height: 8rem !important;
+}
+
+/* fim produto */
+
+/* inicio carrinho */
+#carrinho {
+    margin: 45px 0;
+}
+
+#carrinho .panel-lateral {
+    box-sizing: border-box;
+}
+
+#carrinho .panel-lateral .panel-header  {
+    padding: 20px;
+}
+
+#carrinho .panel-lateral .panel-corpo  {
+    padding: 20px;
+}
+
+#carrinho div.row.box-footer {
+    padding: 20px;
+}
+
+@media(max-width: 992px) {
+    #carrinho .side {
+        padding: 0;
+    }
+}
+
+@media(max-width: 600px) {
+    #carrinho div.row.box-footer {
+        padding: 0;
+    }
+}
+
+/* fim carrinho */
+
+/* incio finalizar */
+@media only screen and (max-width: 992px) {
+    #finalizar .col.padding-mobi {
+        padding: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* inicio admin */
+
+header.admin, main.admin, footer.admin {
+    padding-left: 250px;
+}
+
+#admin_conteudo {
+    padding: 10px 35px;
+}
+
+#admin_conteudo h3 {
+    margin-bottom: 0px;
+}
+
+@media only screen and (max-width: 992px) {
+    header.admin, main.admin, footer.admin {
+      padding-left: 0;
+    }
+    #admin_conteudo {
+        padding: 10px;
+    }
+}
+
+#slide-out.side-admin {
+    width: 250px;
+}
+
+/* dashboard */
+
+#credits li a {
+    font-weight: bold;
+}
+
+#dashboard .stats-card {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+#dashboard .stats-card .count {
+    position: relative;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+#dashboard .stats-card .name {
+    position: relative;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+#dashboard .stats-card>i {
+    position: absolute;
+    font-size: 6rem;
+    right: 0;
+    bottom: -1rem;
+}
+
+#dashboard .table-responsive>.table {
+    margin-bottom: 0;
+}
+
+#dashboard .table-res {
+    padding: 20px;
+}
+
+#dashboard .table {
+    width: 100%;
+    max-width: 100%;
+}
+
+#dashboard .card {
+    margin: 0;
+}
+
+#dashboard .card h5 {
+    margin: 0;
+}
+
+#dashboard .row {
+    margin-bottom: 10px;
+}
+
+#dashboard .col.feat {
+    padding: 10px 15px;
+}
+
+@media only screen and (max-width: 992px) {
+    #dashboard .col.padding-mobi {
+        padding: 0;
+    }        
+    #dashboard .row {
+        margin-bottom: 0;
+    }
+    #dashboard .card {
+        margin-top: 10px;
+    }
+    #dashboard .col.feat {
+        padding: 0 15px;
+    }
+}
+
+@media only screen and (max-width: 601px) {
+    #dashboard .col.feat {
+        padding: 0 10px;
+    }
+}
+/* fim dashboard */
+
+/* trocar senha */
+
+#change_password .stats-card {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+#change_password .stats-card .count {
+    position: relative;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+#change_password .stats-card .name {
+    position: relative;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+#change_password .stats-card>i {
+    position: absolute;
+    font-size: 6rem;
+    right: 0;
+    bottom: -1rem;
+}
+
+#change_password .row.title {
+    margin-bottom: 0;
+}
+
+/* inicio sair */
+
+#sair .stats-card {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+#sair .stats-card .count {
+    position: relative;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2rem;
+}
+
+#sair .stats-card .name {
+    position: relative;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+#sair .stats-card>i {
+    position: absolute;
+    font-size: 6rem;
+    right: 0;
+    bottom: -1rem;
+}
+
+#sair .row.title {
+    margin-bottom: 0;
+}
+
+/* fim sair */
+
+/* erro */
+
+.error_msg {
+    font-style: italic;
+    color: red;
+}
+
+.success_msg {
+    font-weight: bold;
+    color: green;
+}
+/* fim erro */

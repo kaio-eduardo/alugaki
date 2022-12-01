@@ -1,0 +1,7 @@
+<div class="carousel carousel-slider primeiro center col s12" style="margin-bottom: 10px">
+    {% for item in slides %}
+        <a class="carousel-item" href="{{ item.url }}"><img witdth="1000" height="350" class="scale-car" src="Public/imgs/Slides/{{ item.slug }}"></a>
+    {% else %}
+    <a class="carousel-item" href="#"><img witdth="1000" height="350" src="Public/imgs/Slides/noSlide.jpg"></a>
+    {% endfor %}
+</div>

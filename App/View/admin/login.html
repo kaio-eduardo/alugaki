@@ -1,0 +1,48 @@
+{% extends "template/estrutura.html" %}
+
+{% block conteudo %}
+<div class="section"></div>
+<center>
+    <img class="responsive-img orange darken-2" style="width: 250px;" src="Public/imgs/logo.png" />
+    <div class="section"></div>
+
+    <h5 class="black-text">Entre com sua conta de ADMIN</h5>
+    <div class="section"></div>
+
+    <div class="container row" style="justify-content: center;">
+        <div class="z-depth-2 grey lighten-4 col s12 m8 offset-m2 l6 offset-l3  row"
+            style="padding: 20px 30px 20px 30px;">
+
+            <form class="col s12" action="?pag=home&metodo=inAdmin" method="post">
+                <div class='row'>
+                    <div class='col s12'>
+                        <h3 class=""><strong>Admin Login</strong></h3>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='input-field col s12'>
+                        <input class='validate' type='text' name='email' id='email' />
+                        <label for='email'>Email</label>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <div class='input-field col s12'>
+                        <input class='validate' type='password' name='password' id='password' />
+                        <label for='password'>Senha</label>
+                    </div>
+                </div>
+
+                <div class='row'>
+                    <button type='submit' name='btn_login'
+                        class='col s12 btn btn-large waves-effect orange darken-3'>Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</center>
+
+        <div class="section"></div>
+        <div class="section"></div>
+{% endblock %}

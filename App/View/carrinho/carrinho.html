@@ -1,0 +1,151 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+
+{% set total = 0 %}
+
+<div id="carrinho">
+    <div class="container row">
+        <div class="col s12 m12 l9">
+            <div class="grey lighten-3 z-depth-2 row conteudo">
+                <div class="conteudo-header col s12">
+                    <h4 style="color: orange;">
+                        <b>Meu carrinho <i class="fas fa-shopping-cart hide-on-med-and-up"></i></b>
+                    </h4>
+                    <p>Você possui {{ carrinho|length() }} item(s) em seu carrinho</p>
+                </div>
+                <div class="conteudo-corpo col s12">
+                    <form action="?pag=carrinho&metodo=alterar" method="POST">
+                        <table class="responsive-table centered">
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                    <th>Tempo Locação (mês)</th>
+                                    <th>Preço</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if carrinho %}
+                                {% for produto in carrinho %}
+                                <tr>
+                                    <td>
+                                        <img src="Public/imgs/Produtos/{{ produto.image }}" class="complete"
+                                            height="100" width="100">
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <a href="produto.php" style="color: black;">{{ produto.name|title }}</a>
+                                        </h5>
+                                        <p>Locador: {{ produto.locatario }}</p>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <input id="quant" name="quant[]" class="text" size="1" type="number"
+                                                value="{{ produto.qtd }}" maxlength="5" style="width: 50px;">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <input id="tempL" name="time[]" class="text" size="1" type="number"
+                                                value="{{ produto.time }}" maxlength="5" style="width: 50px;">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p>
+                                            <b>R$ {{ produto.price * produto.qtd }}</b>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a href="?pag=carrinho&metodo=remover&id={{ produto.codigo }}"
+                                            class="btn-floating grey darken-2">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% set total = total + produto.price * produto.qtd %}
+                                {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6">
+                                            <h4><i class="fas fa-cart-plus"></i> O seu carrinho está vazio </h4>
+                                            <a href="?pag=produtos">Clique aqui para navegar pelo catalogo de produtos</a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="4">Subtotal</th>
+                                    <th colspan="2">${{total}}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="box-footer row" style="margin: 10px;">
+                            <div class="left-align col s12 m4 hide-on-small-only">
+                                <a href="?pag=home" class="btn btn-small grey darken-1 flow-text"><i
+                                        class="fas fa-chevron-left"></i> Voltar</a>
+                            </div>
+                            <div class="right-align col s12 m8">
+                                <button type="submit" class="btn btn-small waves-effect waves-teal grey darken-2"><i
+                                        class="fas fa-sync-alt"></i> Atualizar</button>
+                                <a href="?pag=finalizar" class="waves-effect waves-green orange darken-3 btn btn-small">Finalizar <i
+                                        class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m12 l3 side">
+            <div class="grey lighten-3 z-depth-2 panel-lateral">
+                <div class="panel-header grey lighten-2 center-align">
+                    <h5 style="margin: 0;"><strong><b>Resumo do Pedido</b></strong></h5>
+                </div>
+                <div class="panel-corpo left-align">
+                    <div class="responsive-table">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Subtotal:</td>
+                                    <th>R$ {{ total }}</th>
+                                </tr>
+                                <tr>
+                                    <td>Taxa AlugAki</td>
+                                    <th>R$ 8,00</th>
+                                </tr>
+                                <tr>
+                                    <td>Frete</td>
+                                    <th>R$ 0,00</th>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <th>R$ {{ total + 8 }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+</script>
+{% endblock %}

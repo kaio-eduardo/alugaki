@@ -1,0 +1,21 @@
+{% extends "template/estrutura.html" %}
+
+{% block top %}
+{% include "template/navbar.html" %}
+{% include "template/href.html" %}
+{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+    <h1 class="orange-text">Sobre nós</h1>
+    <hr>
+    <div class="white z-depth-3" style="padding: 20px">
+        {{ config.sobre_site|raw }}
+    </div>
+    <hr>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include "template/footer.html" %}
+{% endblock %}

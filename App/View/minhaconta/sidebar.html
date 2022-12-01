@@ -1,0 +1,53 @@
+<div class="z-depth-2 white panel lateral">
+    <div class="panel-header grey lighten-3 center-align">
+        <div class="img-user">
+            {% if user.perfil %}
+            <img src='Public/imgs/usuarios/{{ user.perfil }}' class="responsive-img">
+            {% else %}
+            <img src='Public/imgs/usuarios/No_image_available.svg' class="responsive-img">
+            {% endif %}
+        </div>
+        <h6 class="nome-user">Name: {{ user.username }}</h6>
+    </div>
+
+    <div class="panel-corpo">
+        <ul class="menu-links">
+            <li class="{{ get.metodo == 'index' or get.metodo == '' ? 'active' }}">
+                <a href="?pag=minhaconta">
+                    <i class="fas fa-home"></i> Index
+                </a>
+            </li>
+            <li class="{{ get.metodo == 'my_orders' or get.metodo == 'viewPedProd' ? 'active' }}">
+                <a href="?pag=minhaconta&metodo=my_orders">
+                    <i class="fas fa-list"></i> Meus pedidos
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fas fa-money-check-alt"></i> Pagar offline
+                </a>
+            </li>
+            <li class="{{ get.metodo == 'editar' ? 'active' }}">
+                <a href="?pag=minhaconta&metodo=editar">
+                    <i class="fas fa-edit"></i> Editar Conta
+                </a>
+            </li>
+            <li class="{{ get.metodo == 'novo_produto' ? 'active' }}">
+                <a href="?pag=minhaconta&metodo=novo_produto">
+                    <i class="fas fa-store"></i> Adicionar produto
+                </a>
+            </li>
+            <li class="{{ get.metodo == 'gerenciar' ? 'active' }}">
+                <a href="?pag=minhaconta&metodo=gerenciar">
+                    <i class="fas fa-store-alt"></i> Gerenciar produtos
+                </a>
+            </li>
+            <li class="{{ get.metodo == 'sair' ? 'active' }}">
+                <a href="?pag=minhaconta&metodo=sair">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>

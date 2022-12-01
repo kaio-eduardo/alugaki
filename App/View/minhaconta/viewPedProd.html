@@ -1,0 +1,54 @@
+<div class="center-align white z-depth-2 my_orders row">
+    <div class="conteudo-header col s12">
+        <h3 class="flow-text">Pedido #{{ codigo }}</h3>
+
+        <p><strong><b>Itens do seu pedido:</b></strong></p>
+
+        <p>
+            Qualquer questão que tiver sobre está pagina, entre em <a href="?pag=contato">Contato conosco</a>.
+        </p>
+    </div>
+
+    <hr class="col s12">
+
+    <div class="conteudo-corpo col s12">
+        <table class="responsive-table centered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Produto</th>
+                    <th>Quant</th>
+                    <th>Valor</th>
+                    <th>Data do pedido</th>
+                    <th>Data de Finalizado</th>
+                    <th>Periodo</th>
+                    <th>Status</th>
+                    <th>Pagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in pedidos %}
+                <tr>
+                    <td>{{ item.id_pp }}</td>
+                    <td>{{ item.nome }}</td>
+                    <td>{{ item.qtd_produto }}</td>
+                    <td>R$ {{ item.valor }}</td>
+                    <td>{{ item.indate }}</td>
+                    <td>{{ item.outdate == '' ? 'Ainda não devolvido' : item.outdate }}</td>
+                    <td>{{ item.periodo }} mes(es)</td>
+                    <td>{{ item.status == 0 ? 'Em andamento' : 'Devolvido/Finalizado' }}</td>
+                    <td>
+                        <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+                            data-preference-id="503177743-0c7dba25-4ffa-43bb-9d0d-4d57a16d4e0c">
+                            </script>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6"><strong> Nunhum pedido registrado até o momento </strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
